@@ -1,0 +1,16 @@
+[project]
+name = "flare25"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate>=1.10.1",
+    "deepspeed>=0.18.0",
+    "flash-attn>=2.8.3",
+    "pillow>=12.0.0",
+    "torch>=2.9.0",
+    "torchvision>=0.24.0",
+    "transformers>=4.57.1",
+    "wandb>=0.22.2",
+]

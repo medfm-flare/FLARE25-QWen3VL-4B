@@ -1,0 +1,51 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+venv/
+env/
+
+# Dataset directories
+organized_dataset/
+converted_data/
+
+# Previous implementations
+FLARE25-QWen2.5VL/
+
+# Log files
+*.log
+logs/
+*.out
+*.err
+
+# Weights & Biases
+wandb/
+*.wandb
+
+# Model checkpoints and outputs
+output/
+checkpoints/
+*.pth
+*.bin
+*.safetensors
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Git subdirectories (prevent nested repos)
+Qwen3-VL/.git/
+
+# Claude Code
+.claude/
+CLAUDE.md
