@@ -13,7 +13,6 @@ MASTER_PORT=${MASTER_PORT:-$(shuf -i 20001-29999 -n 1)}
 NPROC_PER_NODE=${NPROC_PER_NODE:-2}  # Use 2 GPUs (2x RTX A6000)
 
 # ===== DeepSpeed Configuration =====
-# Use ZeRO-3 with offloading for memory efficiency
 deepspeed=./scripts/zero3_offload.json
 
 # ===== Model Configuration =====
@@ -59,18 +58,19 @@ args="
     \
     --bf16 \
     --output_dir ${output_dir} \
-    --num_train_epochs 1.0 \
+    --num_train_epochs 2.0 \
     --per_device_train_batch_size ${batch_size} \
-    --per_device_eval_batch_size ${batch_size} \
+    --per_device_eval_batch_size 12 \
     --gradient_accumulation_steps ${grad_accum_steps} \
+    --eval_accumulation_steps 4 \
     \
     --max_pixels 50176 \
     --min_pixels 784 \
     \
     --eval_strategy steps \
-    --eval_steps 50 \
+    --eval_steps 200 \
     --save_strategy steps \
-    --save_steps 50 \
+    --save_steps 200 \
     --save_total_limit 3 \
     --load_best_model_at_end True \
     --metric_for_best_model eval_loss \
@@ -81,7 +81,7 @@ args="
     --max_grad_norm 1.0 \
     --lr_scheduler_type cosine \
     \
-    --logging_steps 5 \
+    --logging_steps 1 \
     --model_max_length 4096 \
     --gradient_checkpointing True \
     --dataloader_num_workers 4 \

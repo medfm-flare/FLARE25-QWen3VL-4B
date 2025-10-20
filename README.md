@@ -144,38 +144,6 @@ cd Qwen3-VL/qwen-vl-finetune
 bash scripts/sft_qwen3_4b_flare.sh
 ```
 
-## Training Configuration
-
-### Key Training Script Parameters
-
-```bash
-# Model and components
---model_name_or_path Qwen/Qwen3-VL-4B-Instruct
---tune_mm_vision False    # Keep vision encoder frozen
---tune_mm_mlp True         # Train vision-language projection
---tune_mm_llm True         # Train language model
-
-# Resolution settings (Qwen3-VL uses 32x32 patches, merge_size=2)
---max_pixels 50176         # Max H*W for single image
---min_pixels 784           # Min H*W for single image
-
-# Video settings (if using video data)
---video_fps 2
---video_max_frames 8
---video_min_frames 4
-
-# Memory optimization
---deepspeed ./scripts/zero3.json
---gradient_checkpointing True
---bf16
-
-# Training hyperparameters
---learning_rate 1e-5
---num_train_epochs 3
---per_device_train_batch_size 4
---gradient_accumulation_steps 4
-```
-
 ### Dataset Sampling
 
 Use the `%` syntax to control sampling rates:
@@ -310,46 +278,6 @@ inputs = processor(text=[text], images=[image], return_tensors="pt").to("cuda")
 output = model.generate(**inputs, max_new_tokens=256)
 response = processor.batch_decode(output, skip_special_tokens=True)[0]
 ```
-
-## Troubleshooting
-
-### CUDA Out of Memory
-- Reduce `per_device_train_batch_size` or increase `gradient_accumulation_steps`
-- Lower `max_pixels` to reduce image token count
-- Enable gradient checkpointing
-- Use ZeRO-3 offloading (not for MoE models)
-
-### Image/Tag Mismatch Error
-- **Error**: `ValueError: Number of <image> placeholders exceeds the number of provided images`
-- **Fix**: Ensure conversion script creates exactly one `<image>` tag per image
-
-### FileNotFoundError for Images
-- Verify `data_path` in dataset config
-- Use absolute paths in converted JSON
-- Check image directory structure matches FLARE format
-
-### Model Not Learning (Loss Not Decreasing)
-- Verify label masking is working (check data processor)
-- Ensure `--tune_mm_llm True` to train language model
-- Try higher learning rate (1e-5 to 2e-5)
-- Check dataset quality and diversity
-
-### DeepSpeed Issues with MoE
-- Qwen3-VL MoE models don't support ZeRO-3
-- Use `--deepspeed ./scripts/zero2.json` instead
-
-## Performance Notes
-
-### System Requirements
-- **Training**: 24GB+ GPU memory (A100/H100 recommended)
-- **Inference**: 8-16GB GPU memory
-- **Training Time**: 24-48 hours on A100 for full dataset
-- **Disk Space**: 100GB+ for datasets, models, and checkpoints
-
-### Expected Results
-- Significant improvement over base model for medical tasks
-- Better multi-image reasoning with Interleaved-MRoPE
-- Improved fine-grained detail detection with DeepStack fusion
 
 ## Citation
 
