@@ -40,15 +40,6 @@ The pipeline supports all 19 datasets across 8 medical imaging modalities:
 2. **data_conversion/**: Scripts to convert FLARE dataset to Qwen3-VL format
 3. **organized_dataset/**: FLARE 2025 medical imaging datasets (not included, see Dataset Access)
 
-## Qwen3-VL Architecture Highlights
-
-**Qwen3-VL** brings significant improvements over Qwen2.5-VL:
-- **Interleaved-MRoPE**: Better video and multi-image reasoning
-- **DeepStack Fusion**: Multi-level ViT features for fine-grained details
-- **Patch Size**: 16x16 (vs 14x14 in Qwen2.5-VL)
-- **Better Video Support**: Temporal timestamp alignment
-- **Model Size**: 4B parameters (efficient for training)
-
 ## Requirements
 
 - Python 3.10+
@@ -242,19 +233,6 @@ This strategy preserves strong visual representations while adapting to medical 
 --run_name qwen3vl_flare_experiment
 
 # View training progress at wandb.ai
-```
-
-### Manual Monitoring
-
-```bash
-# Watch GPU usage
-nvidia-smi -l 1
-
-# Monitor training logs
-tail -f Qwen3-VL/qwen-vl-finetune/output/train.log
-
-# Check checkpoints
-ls -lh Qwen3-VL/qwen-vl-finetune/output/checkpoint-*
 ```
 ## Inference
 
