@@ -32,7 +32,7 @@ def _get_external_report_metrics_module() -> Optional[Any]:
         return None
 
     metrics_path = (
-        Path(__file__).resolve().parents[3]
+        Path(__file__).resolve().parents[4]
         / "FLARE25-QWen2.5VL"
         / "utils"
         / "metrics.py"
