@@ -1,7 +1,14 @@
-# FLARE 2025 2D MLLM Qwen3-VL-4B Finetuning
+# FLARE 2025 2D MLLM Qwen3-VL Fine-tuning
 
-This repository provides a finetuning implementation for the FLARE 2025 2D multimodal medical image challenge using Qwen3-VL-4B-Instruct.
+This repository provides a finetuning implementation for the Qwen/Qwen2.5-VL-7B-Instruct specifically optimized for medical image analysis tasks in the FLARE 2025 2D Medical Multimodal Dataset challenge.
 
+## 🚀 Quick Start with Pre-trained Model
+
+The pre-trained baseline model is available at:
+
+🤗 **Model**: [leoyinn/qwen3vl-flare25](https://huggingface.co/leoyinn/qwen3vl-flare25)
+
+---
 ## Overview
 
 This project adapts the official Qwen3-VL finetuning framework for medical multimodal vision-language tasks across 19 datasets in 8 medical imaging modalities from the FLARE 2025 challenge.
@@ -249,7 +256,6 @@ tail -f Qwen3-VL/qwen-vl-finetune/output/train.log
 # Check checkpoints
 ls -lh Qwen3-VL/qwen-vl-finetune/output/checkpoint-*
 ```
-
 ## Inference
 
 After training, load your model for inference:
