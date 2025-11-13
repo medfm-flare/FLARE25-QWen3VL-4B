@@ -335,12 +335,14 @@ If you use this implementation in your research, please cite:
   url={https://github.com/medfm-flare/FLARE25-QWen3VL-4B}
 }
 
-@article{qwen3vl,
-  title={Qwen3-VL: The Next Generation Vision-Language Model},
-  author={Qwen Team},
-  year={2025},
-  publisher={Hugging Face},
-  url={https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct}
+@misc{qwen3technicalreport,
+      title={Qwen3 Technical Report}, 
+      author={Qwen Team},
+      year={2025},
+      eprint={2505.09388},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2505.09388}, 
 }
 ```
 
