@@ -53,3 +53,5 @@ Qwen3-VL/.git/
 .claude/
 CLAUDE.md
 AGENTS.md
+
+upload_to_hf.py
