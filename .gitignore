@@ -35,6 +35,9 @@ checkpoints/
 *.bin
 *.safetensors
 
+# Evaluation results with predictions (contains answers)
+Qwen3-VL/qwen-vl-finetune/evaluation_results/
+
 # IDE and editor files
 .vscode/
 .idea/
@@ -49,3 +52,4 @@ Qwen3-VL/.git/
 # Claude Code
 .claude/
 CLAUDE.md
+AGENT.md
